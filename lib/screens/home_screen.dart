@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foods/screens/profile/login_screen.dart';
-import 'package:foods/screens/profile/profile_screen.dart';
 import 'package:foods/screens/profile/register_screen.dart';
 import 'package:foods/screens/profile/user_view_model.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 30),
         decoration: BoxDecoration(
           image: DecorationImage(
-              colorFilter: ColorFilter.mode(Colors.black, BlendMode.exclusion),
+              colorFilter: const ColorFilter.mode(Colors.black, BlendMode.colorDodge),
               opacity: (0.5),
               image: NetworkImage(imagePath),
               fit: BoxFit.cover),
@@ -83,14 +82,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget welcomeTextWidget() {
     return Column(
-      children: [
+      children: const [
         Text(
           "Welcome",
           style: TextStyle(
               fontFamily: 'Merriweather',
               fontSize: 40,
               fontWeight: FontWeight.w600,
-              color: Colors.red[700]),
+              color: Colors.white),
         ),
         Text(
           "to our delivery",
@@ -98,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
               fontFamily: 'Merriweather',
               fontSize: 40,
               fontWeight: FontWeight.w600,
-              color: Colors.red[700]),
+              color: Colors.white),
         ),
       ],
     );
@@ -108,18 +107,17 @@ class _HomeScreenState extends State<HomeScreen> {
     return Text(
       "home cooking delivery",
       style: TextStyle(
-          fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+          fontFamily: 'OpenSans', fontSize: 16, fontWeight: FontWeight.w600, color: Colors.red[200]),
     );
   }
 
   Widget getLogin(BuildContext context) {
-    final modelView = Provider.of<UserViewModel>(context, listen: false);
     return ElevatedButton(
       style: raisedButtonStyle,
       onPressed: () {
         Navigator.of(context)
             .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
-          return LoginScreen();
+          return const LoginScreen();
         }));
       },
       child: const Text('Login',

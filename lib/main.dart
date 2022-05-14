@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foods/screens/component/splash_screen.dart';
-import 'package:foods/screens/food/food_screen.dart';
 import 'package:foods/screens/food/food_view_model.dart';
-import 'package:foods/screens/home_screen.dart';
-import 'package:foods/screens/profile/login_screen.dart';
-import 'package:foods/screens/profile/register_screen.dart';
 import 'package:foods/screens/profile/user_view_model.dart';
 import 'package:provider/provider.dart';
 

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foods/model/user_model.dart';
-import 'package:foods/screens/food/food_screen.dart';
-import 'package:foods/screens/profile/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:uuid/uuid.dart';
@@ -279,7 +277,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             print(username);
                             print(address);
                             final userItem = UserModel(
-                                id: int.parse(Uuid().v1()),
+                                id: int.parse(const Uuid().v1()),
                                 username: _nameController.text,
                                 email: _emailController.text,
                                 password: _passwordController.text,
@@ -290,7 +288,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             print(userItem);
                           },
                           autofocus: false,
-                          child: const Text('Register')),
+                          child: const Text('Register', style: TextStyle(fontFamily: 'OpenSans'))),
                       const SizedBox(
                         height: 8,
                       ),

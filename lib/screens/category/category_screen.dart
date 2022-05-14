@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foods/model/food_model.dart';
 import 'package:foods/screens/category/category_item_card_widget.dart';
-import 'package:foods/screens/component/filter_screen.dart';
 import 'package:foods/screens/food/food_detail_screen.dart';
 import 'package:foods/screens/food/food_view_model.dart';
 import 'package:provider/provider.dart';
@@ -24,8 +23,8 @@ class CategoryScreen extends StatelessWidget {
             Navigator.pop(context);
           },
           child: Container(
-            padding: EdgeInsets.only(left: 25),
-            child: Icon(
+            padding: const EdgeInsets.only(left: 25),
+            child: const Icon(
               Icons.arrow_back,
               color: Colors.white,
             ),
@@ -40,8 +39,8 @@ class CategoryScreen extends StatelessWidget {
               // );
             },
             child: Container(
-              padding: EdgeInsets.only(right: 25),
-              child: Icon(
+              padding: const EdgeInsets.only(right: 25),
+              child: const Icon(
                 Icons.sort,
                 color: Colors.white,
               ),
@@ -52,7 +51,7 @@ class CategoryScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(
             horizontal: 25,
           ),
-          child: Text(
+          child: const Text(
             "Category", style: TextStyle(fontFamily: 'Merriweather', color: Colors.white,
             fontSize: 17),
           ),

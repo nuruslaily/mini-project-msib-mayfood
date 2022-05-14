@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foods/model/food_model.dart';
 import 'package:foods/screens/food/food_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -26,14 +25,12 @@ class _FilterScreenState extends State<FilterScreen> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Container(
-            child: Icon(
-              Icons.close,
-              color: Colors.black,
-            ),
+          child: const Icon(
+            Icons.close,
+            color: Colors.black,
           ),
         ),
-        title: Text(
+        title: const Text(
           "Filters",
           style: TextStyle(
             fontSize: 20,
@@ -43,9 +40,9 @@ class _FilterScreenState extends State<FilterScreen> {
       ),
       body: Container(
         width: double.maxFinite,
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
         decoration: BoxDecoration(
-          color: Color(0xFFF2F3F2),
+          color: const Color(0xFFF2F3F2),
           borderRadius: BorderRadius.circular(30),
         ),
         child: Column(
@@ -53,16 +50,16 @@ class _FilterScreenState extends State<FilterScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             getLabel("Categories"),
-            SizedBox(height: 15),
-            OptionItem(text: "Snack"),
-            SizedBox(height: 15),
-            OptionItem(text: "Heavy Meal"),
-            SizedBox(height: 15),
-            OptionItem(text: "Drink"),
-            SizedBox(height: 15),
-            Spacer(),
+            const SizedBox(height: 15),
+            const OptionItem(text: "Snack"),
+            const SizedBox(height: 15),
+            const OptionItem(text: "Heavy Meal"),
+            const SizedBox(height: 15),
+            const OptionItem(text: "Drink"),
+            const SizedBox(height: 15),
+            const Spacer(),
             ElevatedButton(
-              child: Text(
+              child: const Text(
                 "Apply Filter",
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
@@ -90,7 +87,7 @@ class _FilterScreenState extends State<FilterScreen> {
   Widget getLabel(String text) {
     return Text(
       text,
-      style: TextStyle(
+      style: const TextStyle(
           color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
     );
   }
@@ -99,7 +96,7 @@ class _FilterScreenState extends State<FilterScreen> {
 class OptionItem extends StatefulWidget {
   final String text;
 
-  OptionItem({Key? key, required this.text}) : super(key: key);
+  const OptionItem({Key? key, required this.text}) : super(key: key);
 
   @override
   _OptionItemState createState() => _OptionItemState();
@@ -116,16 +113,14 @@ class _OptionItemState extends State<OptionItem> {
           checked = !checked;
         });
       },
-      child: Container(
-        child: Row(
-          children: [
-            getCheckBox(),
-            SizedBox(
-              width: 12,
-            ),
-            getTextWidget(),
-          ],
-        ),
+      child: Row(
+        children: [
+          getCheckBox(),
+          const SizedBox(
+            width: 12,
+          ),
+          getTextWidget(),
+        ],
       ),
     );
   }
@@ -143,15 +138,15 @@ class _OptionItemState extends State<OptionItem> {
 
   Widget getCheckBox() {
     return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(8)),
+      borderRadius: const  BorderRadius.all(Radius.circular(8)),
       child: SizedBox(
         width: 25,
         height: 25,
         child: Container(
-          decoration: new BoxDecoration(
+          decoration: BoxDecoration(
               border: Border.all(
-                  width: checked ? 0 : 1.5, color: Color(0xffB1B1B1)),
-              borderRadius: new BorderRadius.circular(8),
+                  width: checked ? 0 : 1.5, color: const  Color(0xffB1B1B1)),
+              borderRadius: BorderRadius.circular(8),
               color: checked ? Colors.blue : Colors.transparent),
           child: Theme(
             data: ThemeData(

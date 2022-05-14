@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:foods/model/user_model.dart';
 import 'package:foods/screens/cart/cart_screen.dart';
 import 'package:foods/screens/category/category_screen.dart';
 import 'package:foods/screens/component/favorite_screen.dart';
-import 'package:foods/screens/food/food_view_model.dart';
 import 'package:foods/screens/profile/login_screen.dart';
 import 'package:foods/screens/profile/profile_screen.dart';
-import 'package:foods/screens/profile/user_preferences.dart';
 import 'package:foods/screens/profile/user_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,8 +39,6 @@ class _DrawWidgetState extends State<DrawWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final modelView = Provider.of<FoodViewModel>(context, listen: false);
-
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -56,13 +51,15 @@ class _DrawWidgetState extends State<DrawWidget> {
             onTap: () => {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => ProfileScreen(
-                      // id: viewModel,
-                      // userModel: userModel,
-                      ),
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return ProfileScreen();
+                  }, transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    final tween = Tween(begin: 0.0, end: 1.0);
+                    return FadeTransition(opacity: animation.drive(tween), child: child);
+                  }
                 ),
-              ),
+              )
             },
           ),
           _item(
@@ -72,10 +69,15 @@ class _DrawWidgetState extends State<DrawWidget> {
             onTap: () => {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => CartScreen(),
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return CartScreen();
+                  }, transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    final tween = Tween(begin: 0.0, end: 1.0);
+                    return FadeTransition(opacity: animation.drive(tween), child: child);
+                  }
                 ),
-              ),
+              )
             },
           ),
           _item(
@@ -84,11 +86,16 @@ class _DrawWidgetState extends State<DrawWidget> {
               // ignore: avoid_print
               onTap: () => {
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const CategoryScreen(),
-                      ),
-                    ),
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return const CategoryScreen();
+                  }, transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    final tween = Tween(begin: 0.0, end: 1.0);
+                    return FadeTransition(opacity: animation.drive(tween), child: child);
+                  }
+                ),
+              )
                   }),
           _item(
               icon: Icons.favorite,
@@ -96,11 +103,16 @@ class _DrawWidgetState extends State<DrawWidget> {
               // ignore: avoid_print
               onTap: () => {
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const FavoriteScreen(),
-                      ),
-                    ),
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return const FavoriteScreen();
+                  }, transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    final tween = Tween(begin: 0.0, end: 1.0);
+                    return FadeTransition(opacity: animation.drive(tween), child: child);
+                  }
+                ),
+              )
                   }),
 
           const Divider(height: 25, thickness: 1),
@@ -127,11 +139,16 @@ class _DrawWidgetState extends State<DrawWidget> {
     final modelView = Provider.of<UserViewModel>(context, listen: false);
     modelView.logout(modelView.profile[0]);
     Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
-      ),
-    );
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return const LoginScreen();
+                  }, transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    final tween = Tween(begin: 0.0, end: 1.0);
+                    return FadeTransition(opacity: animation.drive(tween), child: child);
+                  }
+                ),
+              );
   }
 
   Widget _header() {
@@ -143,8 +160,8 @@ class _DrawWidgetState extends State<DrawWidget> {
         child: CircleAvatar(child: Text(user.username[0], style: const TextStyle(fontSize: 20),)
       ),
       ),
-      accountName: Text(user.username),
-      accountEmail: Text(user.email),
+      accountName: Text(user.username, style: const TextStyle(fontFamily: 'OpenSans')),
+      accountEmail: Text(user.email, style: const TextStyle(fontFamily: 'OpenSans')),
     );
   }
 
@@ -158,6 +175,7 @@ class _DrawWidgetState extends State<DrawWidget> {
             child: Text(
               text!,
               style: const TextStyle(
+                fontFamily: 'OpenSans',
                 fontWeight: FontWeight.bold,
               ),
             ),

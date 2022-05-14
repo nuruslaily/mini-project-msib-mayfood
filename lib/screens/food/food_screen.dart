@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foods/model/view_state.dart';
-import 'package:foods/screens/cart/cart_screen.dart';
 import 'package:foods/screens/component/card_screen.dart';
 import 'package:foods/screens/food/food_detail_screen.dart';
 import 'package:foods/screens/component/draw_screen.dart';
@@ -46,10 +45,10 @@ class _FoodScreenState extends State<FoodScreen>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.red[100],
+        backgroundColor: Colors.brown[100],
           appBar: AppBar(
             centerTitle: true,
-            title: Text('MayFoods', style: TextStyle(fontSize: 17, fontFamily: 'Merriweather', 
+            title: const Text('MayFoods', style: TextStyle(fontSize: 20, fontFamily: 'AbrilFatface', 
             color: Colors.white)),
             backgroundColor: Colors.red,
           ),
@@ -130,7 +129,7 @@ class _FoodListState extends State<FoodList> {
     }
 
     if (isError) {
-      return const Center(child: Text('Gagal mengambil data.'));
+      return const Center(child: Text('Gagal mengambil data.', style: TextStyle(fontFamily: 'OpenSans')));
     }
 
     return gridView(viewModel);

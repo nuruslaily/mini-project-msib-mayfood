@@ -98,6 +98,9 @@ flutter:
     - family: AbrilFatface
       fonts:
         - asset: assets/fonts/Abril_Fatface/AbrilFatface-Regular.ttf
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/Open_Sans/static/OpenSans/OpenSans-Regular.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foods/model/food_model.dart';
 import 'package:foods/screens/cart/cart_screen.dart';
-import 'package:foods/screens/component/button_cart_widget.dart';
 import 'package:foods/screens/component/item_counter.dart';
 import 'package:foods/screens/food/food_view_model.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +79,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen>{
                             ),
                             const Spacer(),
                             Text(
-                              "\Rp${getTotalPrice().toStringAsFixed(2)}",
+                              "Rp${getTotalPrice().toStringAsFixed(2)}",
                               style: const TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
@@ -99,7 +98,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen>{
                             onPressed: () {},
                             child: IconButton(
                                 onPressed: () => getButtonAddCart(modelView),
-                                icon: Icon(Icons.shopping_cart))),
+                                icon: const Icon(Icons.shopping_cart))),
                         const Spacer(),
                       ],
                     )),
@@ -111,7 +110,6 @@ class _FoodDetailScreenState extends State<FoodDetailScreen>{
   }
 
   getButtonAddCart(FoodViewModel viewModel) {
-    print(viewModel.foods.length);
     for (var food in viewModel.foods) {
       if (food.id == widget.id) {
         setState(() {
@@ -121,11 +119,16 @@ class _FoodDetailScreenState extends State<FoodDetailScreen>{
     }
 
     Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => CartScreen(),
-        ),
-      );
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return CartScreen();
+                  }, transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    final tween = Tween(begin: 0.0, end: 1.0);
+                    return FadeTransition(opacity: animation.drive(tween), child: child);
+                  }
+                ),
+              );
   }
 
   Widget getImageHeaderWidget() {

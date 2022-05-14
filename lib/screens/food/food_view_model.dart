@@ -60,7 +60,7 @@ List<Widget> getChildrenWithSeparator(
     required Widget separator,
     bool addToLastChild = true}) {
   List<Widget> children = [];
-  if (widgets.length > 0) {
+  if (widgets.isNotEmpty) {
     children.add(separator);
 
     for (int i = 0; i < widgets.length; i++) {

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:foods/screens/food/food_screen.dart';
@@ -9,7 +7,7 @@ class OrderAcceptedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String path ='https://wa.me/+6285646709405';
+    // String path ='https://wa.me/+6285646709405';
     return Scaffold(
       body: Container(
         width: double.maxFinite,
@@ -57,7 +55,7 @@ class OrderAcceptedScreen extends StatelessWidget {
               height: 200,
             )),
             ElevatedButton(
-              child: const Text("Track Order"),
+              child: const Text("Track Order", style: TextStyle(fontFamily: 'OpenSans')),
               onPressed: () {
                 Navigator.pop(context);
               },

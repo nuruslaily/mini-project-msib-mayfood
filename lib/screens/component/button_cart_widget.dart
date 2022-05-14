@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foods/model/food_model.dart';
-import 'package:foods/screens/food/food_view_model.dart';
-import 'package:provider/provider.dart';
 
 class ButtonCart extends StatefulWidget {
   final Function() onTap;
@@ -18,6 +15,6 @@ class _ButtonCartState extends State<ButtonCart> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: widget.onTap,
-        child: Text('Add to Cart'));
+        child: const Text('Add to Cart'));
   }
 }

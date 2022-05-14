@@ -11,7 +11,7 @@ class CategoryItemCardWidget extends StatelessWidget {
 
   final width = 175.0;
 
-  final Color? borderColor = Colors.red[50];
+  final Color? borderColor = Colors.brown[100];
   final double borderRadius = 18;
   final Color color;
 
@@ -31,10 +31,11 @@ class CategoryItemCardWidget extends StatelessWidget {
                       ),
                       Expanded(
                         child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 5),
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
                           child: Text(
                             item.name,
-                            style: TextStyle(
+                            style: const TextStyle(
+                              fontFamily: 'OpenSans',
                               fontSize: 14,
                               color: Color.fromARGB(255, 41, 39, 39),
                               fontWeight: FontWeight.bold

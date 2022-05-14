@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foods/model/food_model.dart';
-import 'package:foods/screens/component/item_counter.dart';
 
 class ProductCards extends StatefulWidget {
   const ProductCards(
@@ -43,7 +42,7 @@ class _ProductCardsState extends State<ProductCards> {
                     key: Key(widget.menu.id.toString()),
                     child: Text(
                       widget.menu.name,
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.black),
+                      style: const TextStyle(fontFamily: 'OpenSans', fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),
                     ),
                   ),
                   IconButton(

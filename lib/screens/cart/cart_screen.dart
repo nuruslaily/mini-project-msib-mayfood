@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:foods/model/food_model.dart';
 import 'package:foods/screens/cart/chart_item_widget.dart';
 import 'package:foods/screens/cart/checkout_bottom_sheet.dart';
-import 'package:foods/screens/food/food_screen.dart';
 import 'package:foods/screens/food/food_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -18,13 +17,12 @@ class _CartScreenState extends State<CartScreen> {
   int amount = 1;
   @override
   Widget build(BuildContext context) {
-    FoodViewModel viewModel = Provider.of<FoodViewModel>(context);
     final cartList =
         Provider.of<FoodViewModel>(context, listen: false).cartList;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
             "My Cart",
             style: TextStyle(fontSize: 17, fontFamily: 'Merriweather', color: Colors.white),
           ),
@@ -33,8 +31,8 @@ class _CartScreenState extends State<CartScreen> {
             Navigator.pop(context);
           },
           child: Container(
-            padding: EdgeInsets.only(left: 25),
-            child: Icon(
+            padding: const EdgeInsets.only(left: 25),
+            child: const Icon(
               Icons.arrow_back,
               color: Colors.white,
             ),
@@ -50,19 +48,19 @@ class _CartScreenState extends State<CartScreen> {
             addToLastChild: false,
             widgets: cartList.map((e) {
               return Container(
-                padding: EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 25),
                 width: double.maxFinite,
                 child: ChartItemWidget(item: e),
               );
             }).toList(),
-            separator: Padding(
+            separator: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 25),
               child: Divider(
                 thickness: 1,
               ),
             ),
           )),
-          Divider(
+          const Divider(
             thickness: 1,
           ),
           getCheckoutButton(context),
@@ -92,14 +90,12 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   Widget getCheckoutButton(BuildContext context) {
-    FoodViewModel viewModel = Provider.of<FoodViewModel>(context);
-    final cartList =
-        Provider.of<FoodViewModel>(context, listen: false).cartList;
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         child: ElevatedButton(
-          child: Text("Go To Check Out",
+          child: const Text("Go To Check Out",
               style: TextStyle(
+                fontFamily: 'OpenSans',
                 fontWeight: FontWeight.w600,
               )),
           // trailingWidget: getButtonPriceWidget(),
@@ -111,14 +107,14 @@ class _CartScreenState extends State<CartScreen> {
 
   Widget getButtonPriceWidget() {
     return Container(
-      padding: EdgeInsets.all(2),
+      padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
         color: Colors.red[800],
         borderRadius: BorderRadius.circular(4),
       ),
       child: Text(
-        "\Rp${getPrice().toStringAsFixed(2)}",
-        style: TextStyle(fontWeight: FontWeight.w600),
+        "Rp${getPrice().toStringAsFixed(2)}",
+        style: const TextStyle(fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -129,7 +125,7 @@ class _CartScreenState extends State<CartScreen> {
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
         builder: (BuildContext bc) {
-          return CheckoutBottomSheet();
+          return const CheckoutBottomSheet();
         });
   }
   double getPrice() {

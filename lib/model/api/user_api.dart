@@ -24,7 +24,6 @@ class UserAPI {
     final response = await Dio().post(
         "https://my-json-server.typicode.com/nuruslaily/pelatihan/profile",
         data: user.toJson());
-    print(response.data);
     return response.data;
   }
 }

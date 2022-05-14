@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:foods/model/user_model.dart';
 import 'package:foods/screens/food/food_screen.dart';
 import 'package:foods/screens/profile/user_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:uuid/uuid.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -82,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     UserViewModel modelView = Provider.of<UserViewModel>(context);
-    
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -99,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
               TextFormField(
                 controller: _emailController,
                 cursorColor: Colors.black,
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
                 decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.email),
                     hintText: 'Email',
@@ -117,8 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     focusColor: Colors.black),
                 validator: (email) {
-                  if (email != null &&
-                      EmailValidator.validate(email)) {
+                  if (email != null && EmailValidator.validate(email)) {
                     return null;
                   } else {
                     return 'Enter a valid email';
@@ -132,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: _passwordController,
                   obscureText: true,
                   cursorColor: Colors.black,
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.lock),
                       hintText: 'Password',
@@ -160,9 +157,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 16,
               ),
               ElevatedButton(
-                  child: const Text('Login'),
-                  onPressed: () => getButtonLogin(modelView),
-                  ),
+                child: const Text(
+                  'Login',
+                  style: TextStyle(fontFamily: 'OpenSans'),
+                ),
+                onPressed: () => getButtonLogin(modelView),
+              ),
             ]),
           ),
         ),
@@ -170,65 +170,63 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  getButtonLogin(UserViewModel modelView){
+  getButtonLogin(UserViewModel modelView) {
     var statusLogin = false;
     var userValid;
     print('di klik');
     //  if (formKey.currentState!.validate()) {
     //                   formKey.currentState!.save();
 
-                      email = _emailController.text;
-                      password = _passwordController.text;
+    email = _emailController.text;
+    password = _passwordController.text;
 
-                      for (var users in modelView.user) {
+    for (var users in modelView.user) {
+      print(users.email == email);
+      print(users.password == password);
 
-                        print(users.email == email);
-                        print(users.password == password);
+      if (users.email == email && users.password == password) {
+        print("berhasil login");
+        // simpan data valid user ke storage
+        statusLogin = true;
+        userValid = users;
+      }
+    }
 
-                        if (users.email == email &&
-                            users.password == password) {
+    if (statusLogin) {
+      setState(() {
+        modelView.saveUserinStrorage(userValid);
+      });
+      Navigator.push(
+        context,
+        PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) {
+          return const FoodScreen();
+        }, transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          final tween = Tween(begin: 0.0, end: 1.0);
+          return FadeTransition(opacity: animation.drive(tween), child: child);
+        }),
+      );
+    } else {
+      Fluttertoast.showToast(
+          msg: "invalid email or password",
+          toastLength: Toast.LENGTH_SHORT,
+          // gravity: ToastGravity.CENTER,
+          backgroundColor: Colors.black,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
 
-                            print("berhasil login");
-                          // simpan data valid user ke storage
-                            statusLogin = true;
-                            userValid = users;
-                        }
-                      }
+    // logindata.setBool('login', true);
+    // logindata.setString('email', email);
 
-                      if(statusLogin){
-                        setState(() {
-                            modelView.saveUserinStrorage(userValid);
-                          });
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const FoodScreen()));
-                          
-                      } else {
-                        Fluttertoast.showToast(
-                          msg: "invalid email or password",
-                          toastLength: Toast.LENGTH_SHORT,
-                          // gravity: ToastGravity.CENTER,
-                          backgroundColor: Colors.black,
-                          timeInSecForIosWeb: 1,
-                          textColor: Colors.white,
-                          fontSize: 16.0);
+    // final userItem = UserModel(
+    //     id: int.parse(Uuid().v1()), email: email, password: password);
+    // widget.onCreate(userItem);
 
-                      }
-
-                      // logindata.setBool('login', true);
-                      // logindata.setString('email', email);
-
-
-
-                      // final userItem = UserModel(
-                      //     id: int.parse(Uuid().v1()), email: email, password: password);
-                      // widget.onCreate(userItem);
-                      
-                      //   viewModel!.doLogin(
-                      //       _emailController.text, _passwordController.text);
-                      // }
-                    // }
+    //   viewModel!.doLogin(
+    //       _emailController.text, _passwordController.text);
+    // }
+    // }
   }
 
   // void _validateInputs() {

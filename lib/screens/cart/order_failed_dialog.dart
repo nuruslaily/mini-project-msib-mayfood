@@ -65,7 +65,7 @@ class OrderFailedDialogue extends StatelessWidget {
               flex: 8,
             ),
             ElevatedButton(
-              child: const Text("Please Try Again",style: TextStyle(fontWeight: FontWeight.w600,)),
+              child: const Text("Please Try Again",style: TextStyle(fontFamily:'OpenSans',fontWeight: FontWeight.w600,)),
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (BuildContext context) {

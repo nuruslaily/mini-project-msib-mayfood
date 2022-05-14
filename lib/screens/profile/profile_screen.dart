@@ -1,15 +1,12 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:foods/model/user_model.dart';
-import 'package:foods/screens/profile/user_preferences.dart';
 import 'package:foods/screens/profile/user_view_model.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   // final int id;
 
-  ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -26,7 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
             "Profile",
             style: TextStyle(fontSize: 17, fontFamily: 'Merriweather'),
           ),
@@ -35,8 +32,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Navigator.pop(context);
           },
           child: Container(
-            padding: EdgeInsets.only(left: 25),
-            child: Icon(
+            padding: const EdgeInsets.only(left: 25),
+            child: const Icon(
               Icons.arrow_back,
               color: Colors.white,
             ),
@@ -48,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           height: 24,
         ),
         buildProfile(user),
-        SizedBox(height: 24),
+        const SizedBox(height: 24),
       ]),
     );
   }
@@ -59,20 +56,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
       children: [
         Text(
           user.username,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
         ),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         Text(
           user.email,
-          style: TextStyle(color: Colors.grey),
+          style: const TextStyle(fontFamily: 'OpenSans', color: Colors.grey),
         ),
         Text(
           user.phone,
-          style: TextStyle(fontSize: 16),
+          style: const TextStyle(fontFamily: 'OpenSans',fontSize: 16),
+        ),
+        Text(
+          user.birth,
+          style: const TextStyle(fontFamily: 'OpenSans',fontSize: 16),
         ),
         Text(
           user.address,
-          style: TextStyle(fontSize: 16),
+          style: const TextStyle(fontFamily: 'OpenSans',fontSize: 16),
         )
       ],
     );

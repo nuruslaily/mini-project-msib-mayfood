@@ -17,15 +17,15 @@ class _ItemCounterState extends State<ItemCounter> {
     return Row(
       children: [
         iconWidget(Icons.remove, iconColor: Colors.grey,onPressed: decrementAmount),
-        SizedBox(
+        const SizedBox(
           width: 18,
         ),
-        Container(
+        SizedBox(
           width: 30,
           child: Center(
                 child: getText(
                     text: amount.toString(), fontSize: 15, isBold: true))),
-        SizedBox(width: 18),
+        const SizedBox(width: 18),
         iconWidget(Icons.add,
             iconColor: Colors.blue, onPressed: incrementAmount)
       ],
@@ -49,9 +49,7 @@ class _ItemCounterState extends State<ItemCounter> {
   }
 
   void updateParent() {
-    if (widget.onAmountChanged != null) {
-      widget.onAmountChanged(amount);
-    }
+    widget.onAmountChanged(amount);
   }
 
   Widget iconWidget(IconData iconData, {required Color iconColor, onPressed}) {
@@ -67,7 +65,7 @@ class _ItemCounterState extends State<ItemCounter> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(17),
           border: Border.all(
-            color: Color(0xffE2E2E2),
+            color: const Color(0xffE2E2E2),
           ),
         ),
         child: Center(

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:foods/model/api/user_api.dart';
 import 'package:foods/model/user_model.dart';
 import 'package:foods/model/view_state.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class UserViewModel with ChangeNotifier {
   List<UserModel> _user = [];
