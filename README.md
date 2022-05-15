@@ -1,16 +1,34 @@
-# foods
+# Mini Project MSIB Flutter
 
-A new Flutter project.
+Mini Project MSIB Alterra Academy Program Become a Flutter Master. From zero to hero
 
-## Getting Started
+## Fitur
 
-This project is a starting point for a Flutter application.
+Berikut adalah fitur-fitur dari aplikasi Mayfoods, terdiri dari :
 
-A few resources to get you started if this is your first Flutter project:
+### Screen
+- [Splash Screen](lib/screens/component/splash_screen.dart)
+- [Welcome Screen](lib/screens/home_screen.dart)
+- [Register](lib/screens/profile/register_screen.dart)
+- [Login](lib/screens/profile/login_screen.dart)
+- [Profile](lib/screens/profile/profile_screen.dart)
+- [Daftar Menu](lib/screens/food/food_screen.dart)
+- [Detail Menu](lib/screens/food/food_detail_screen.dart)
+- [Favorite](lib/screens/component/favorite_screen.dart)
+- [Category](lib/screens/category/category_screen.dart)
+- [Keranjang](lib/screens/cart/cart_screen.dart)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### API
+- [FoodAPI](lib/model/api/food_api.dart)
+- [UserAPI](lib/model/api/user_api.dart)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Model
+- [Food Model](lib/model/food_model.dart)
+- [User Model](lib/model/user_model.dart)
+
+### ViewModel
+- [Food View Model](lib/screens/food/food_view_model.dart)
+- [User View Model](lib/screens/profile/user_view_model.dart)
+
+
+## Screenshoot
