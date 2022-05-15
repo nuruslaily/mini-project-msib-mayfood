@@ -6,20 +6,22 @@ import 'package:foods/screens/food/food_view_model.dart';
 import 'package:provider/provider.dart';
 
 class FoodDetailScreen extends StatefulWidget {
-  final Food category;
+  final Food detailFood;
   final String heroSuffix;
   final int id;
   final String name;
+  final String category;
   final double price;
   final String description;
   final String image;
 
   const FoodDetailScreen(
       {Key? key,
-      required this.category,
+      required this.detailFood,
       required this.heroSuffix,
       required this.id,
       required this.name,
+      required this.category,
       required this.price,
       required this.description,
       required this.image})
@@ -29,106 +31,123 @@ class FoodDetailScreen extends StatefulWidget {
   State<FoodDetailScreen> createState() => _FoodDetailScreenState();
 }
 
-class _FoodDetailScreenState extends State<FoodDetailScreen>{
+class _FoodDetailScreenState extends State<FoodDetailScreen> {
   int amount = 1;
 
   @override
   Widget build(BuildContext context) {
     FoodViewModel modelView = Provider.of<FoodViewModel>(context);
+
+    final checkCart =
+        modelView.cartList.where((e) => e.id == widget.id).toList();
+    // print(checkCart.length);
+    print((checkCart.isNotEmpty) ? checkCart[0].price : 'kosong');
+
+    if (checkCart.isNotEmpty) {
+      setState(() {
+        amount = (checkCart[0].price / widget.price).toInt();
+      });
+    }
     // final modelView = Provider.of<FoodViewModel>(context, listen: false);
     // final item = FoodViewModel();
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.name,
-              style: const TextStyle(fontFamily: 'Merriweather', fontSize: 17)),
-          leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Container(
-              padding: const EdgeInsets.only(left: 25),
-              child: const Icon(
-                Icons.arrow_back,
-              ),
+      appBar: AppBar(
+        title: Text(widget.name,
+            style: const TextStyle(fontFamily: 'Merriweather', fontSize: 17)),
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Container(
+            padding: const EdgeInsets.only(left: 25),
+            child: const Icon(
+              Icons.arrow_back,
             ),
           ),
         ),
-        body: SafeArea(
-          child: Column(
-            children: [
-              getImageHeaderWidget(),
-              Expanded(
-                child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      children: [
-                        ListTile(
-                          subtitle: Text(widget.description,
-                              style: const TextStyle(fontSize: 16)),
-                          trailing: FavoriteButton(id: widget.id,),
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            getImageHeaderWidget(),
+            Expanded(
+              child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    children: [
+                      ListTile(
+                        subtitle: Text(widget.description,
+                            style: const TextStyle(fontSize: 16)),
+                        trailing: FavoriteButton(
+                          id: widget.id,
                         ),
-                        const Spacer(),
-                        Row(
-                          children: [
-                            ItemCounter(
-                              onAmountChanged: (newAmount) {
-                                setState(() {
-                                  amount = newAmount;
-                                });
-                              },
+                      ),
+                      const Spacer(),
+                      Row(
+                        children: [
+                          ItemCounter(
+                            onAmountChanged: (newAmount) {
+                              setState(() {
+                                amount = newAmount;
+                              });
+                            },
+                          ),
+                          const Spacer(),
+                          Text(
+                            "Rp${getTotalPrice().toStringAsFixed(2)}",
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
                             ),
-                            const Spacer(),
-                            Text(
-                              "Rp${getTotalPrice().toStringAsFixed(2)}",
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )
-                          ],
-                        ),
-                        const Spacer(),
-                        const Divider(thickness: 1),
-                        getProductDataRowWidget(
-                          "Review",
-                          customWidget: ratingWidget(),
-                        ),
-                        const Spacer(),
-                        ElevatedButton(
-                            onPressed: () {},
-                            child: IconButton(
-                                onPressed: () => getButtonAddCart(modelView),
-                                icon: const Icon(Icons.shopping_cart))),
-                        const Spacer(),
-                      ],
-                    )),
-              )
-            ],
-          ),
+                          )
+                        ],
+                      ),
+                      const Spacer(),
+                      const Divider(thickness: 1),
+                      getProductDataRowWidget(
+                        "Review",
+                        customWidget: ratingWidget(),
+                      ),
+                      const Spacer(),
+                      ElevatedButton(
+                          onPressed: () {},
+                          child: (checkCart.isNotEmpty)
+                              ? null
+                              : IconButton(
+                                  onPressed: () => getButtonAddCart(modelView),
+                                  icon: const Icon(Icons.shopping_cart))),
+                      const Spacer(),
+                    ],
+                  )),
+            )
+          ],
         ),
+      ),
     );
   }
 
   getButtonAddCart(FoodViewModel viewModel) {
-    for (var food in viewModel.foods) {
-      if (food.id == widget.id) {
-        setState(() {
-          viewModel.addCart(food);
-        });
-      }
-    }
+    final foodItem = Food(
+        id: widget.id,
+        name: widget.name,
+        category: widget.category,
+        price: widget.price * amount,
+        description: widget.description,
+        image: widget.image);
+
+    setState(() {
+      viewModel.addCart(foodItem);
+    });
 
     Navigator.push(
-                context,
-                PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return CartScreen();
-                  }, transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                    final tween = Tween(begin: 0.0, end: 1.0);
-                    return FadeTransition(opacity: animation.drive(tween), child: child);
-                  }
-                ),
-              );
+      context,
+      PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) {
+        return CartScreen();
+      }, transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        final tween = Tween(begin: 0.0, end: 1.0);
+        return FadeTransition(opacity: animation.drive(tween), child: child);
+      }),
+    );
   }
 
   Widget getImageHeaderWidget() {
@@ -153,8 +172,8 @@ class _FoodDetailScreenState extends State<FoodDetailScreen>{
             tileMode: TileMode.clamp),
       ),
       child: Hero(
-        tag: "FoodItem:" + widget.category.name + "-" + (widget.heroSuffix),
-        child: Image.network(widget.category.image),
+        tag: "FoodItem:" + widget.detailFood.name + "-" + (widget.heroSuffix),
+        child: Image.network(widget.detailFood.image),
       ),
     );
   }
@@ -208,7 +227,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen>{
   }
 
   double getTotalPrice() {
-    return amount.toDouble() * widget.category.price;
+    return amount.toDouble() * widget.detailFood.price;
   }
 }
 
@@ -240,7 +259,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
     );
   }
 
-  getButtonFavoriteMenu(FoodViewModel viewModel){
+  getButtonFavoriteMenu(FoodViewModel viewModel) {
     for (var food in viewModel.foods) {
       if (food.id == widget.id) {
         setState(() {

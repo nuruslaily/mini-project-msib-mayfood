@@ -39,7 +39,8 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 30),
         decoration: BoxDecoration(
           image: DecorationImage(
-              colorFilter: const ColorFilter.mode(Colors.black, BlendMode.colorDodge),
+              colorFilter:
+                  const ColorFilter.mode(Colors.black, BlendMode.colorDodge),
               opacity: (0.5),
               image: NetworkImage(imagePath),
               fit: BoxFit.cover),
@@ -107,7 +108,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Text(
       "home cooking delivery",
       style: TextStyle(
-          fontFamily: 'OpenSans', fontSize: 16, fontWeight: FontWeight.w600, color: Colors.red[200]),
+          fontFamily: 'OpenSans',
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          color: Colors.red[200]),
     );
   }
 
@@ -135,8 +139,8 @@ class _HomeScreenState extends State<HomeScreen> {
       onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
           return RegisterScreen(
-            onCreate: (user) {
-              modelView.postUser(user);
+            onCreate: (register) {
+              modelView.postUser(register);
               print('Posting Data...');
               Navigator.push(
                 context,

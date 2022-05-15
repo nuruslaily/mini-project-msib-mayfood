@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foods/model/user_model.dart';
+import 'package:foods/screens/profile/user_view_model.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:uuid/uuid.dart';
@@ -105,6 +107,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    UserViewModel modelView = Provider.of<UserViewModel>(context);
+    
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -274,21 +278,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const SizedBox(height: 16),
                       ElevatedButton(
                           onPressed: () {
-                            print(username);
-                            print(address);
+                            // print(username);
+                            // print(address);
+                            // print(_nameController.text);
                             final userItem = UserModel(
-                                id: int.parse(const Uuid().v1()),
                                 username: _nameController.text,
                                 email: _emailController.text,
                                 password: _passwordController.text,
                                 phone: _phoneController.text,
                                 birth: _birthController.text,
                                 address: _addressController.text);
-                            widget.onCreate(userItem);
                             print(userItem);
+                            
+                            widget.onCreate(userItem);
                           },
                           autofocus: false,
-                          child: const Text('Register', style: TextStyle(fontFamily: 'OpenSans'))),
+                          child: const Text('Register',
+                              style: TextStyle(fontFamily: 'OpenSans'))),
                       const SizedBox(
                         height: 8,
                       ),

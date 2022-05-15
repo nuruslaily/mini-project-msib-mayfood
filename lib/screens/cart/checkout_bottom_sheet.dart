@@ -25,8 +25,12 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
         children: <Widget>[
           Row(
             children: [
-              const Text("Checkout", style: TextStyle(fontSize: 24,
-                fontWeight: FontWeight.w600,),
+              const Text(
+                "Checkout",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               const Spacer(),
               GestureDetector(
@@ -49,7 +53,10 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
           getDivider(),
           checkoutRow("Promo Code", trailingText: "Pick Discount"),
           getDivider(),
-          checkoutRow("Total Cost", trailingText: "Total Harga",),
+          checkoutRow(
+            "Total Cost",
+            trailingText: "Total Harga",
+          ),
           getDivider(),
           const SizedBox(
             height: 30,
@@ -60,7 +67,13 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
               top: 25,
             ),
             child: ElevatedButton(
-              child: const Text("Place Order", style: TextStyle(fontFamily:'OpenSans',fontWeight: FontWeight.w600,),),
+              child: const Text(
+                "Place Order",
+                style: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
               onPressed: () {
                 onPlaceOrderClicked();
               },
@@ -110,16 +123,24 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
       ),
       child: Row(
         children: [
-          Text(label, style: const TextStyle(fontSize: 18,
-            color: Color(0xFF7C7C7C),
-            fontWeight: FontWeight.w600,),
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 18,
+              color: Color(0xFF7C7C7C),
+              fontWeight: FontWeight.w600,
+            ),
           ),
           const Spacer(),
           trailingText == null
               ? trailingWidget!
-              : Text(trailingText, style: const TextStyle(fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,),
+              : Text(
+                  trailingText,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
           const SizedBox(
             width: 20,

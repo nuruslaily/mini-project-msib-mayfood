@@ -16,13 +16,14 @@ class _ItemCounterState extends State<ItemCounter> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        iconWidget(Icons.remove, iconColor: Colors.grey,onPressed: decrementAmount),
+        iconWidget(Icons.remove,
+            iconColor: Colors.grey, onPressed: decrementAmount),
         const SizedBox(
           width: 18,
         ),
         SizedBox(
-          width: 30,
-          child: Center(
+            width: 30,
+            child: Center(
                 child: getText(
                     text: amount.toString(), fontSize: 15, isBold: true))),
         const SizedBox(width: 18),
@@ -32,7 +33,6 @@ class _ItemCounterState extends State<ItemCounter> {
     );
   }
 
-  
   void incrementAmount() {
     setState(() {
       amount = amount + 1;

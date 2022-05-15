@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class UserModel with ChangeNotifier{
+class UserModel with ChangeNotifier {
   final int? id;
   final String username;
   final String email;
@@ -20,9 +20,21 @@ class UserModel with ChangeNotifier{
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(username: json['username'], email: json['email'], password: json['password'], phone: json['phone'], birth: json['birth'], address: json['address']);
+    return UserModel(
+        username: json['username'],
+        email: json['email'],
+        password: json['password'],
+        phone: json['phone'],
+        birth: json['birth'],
+        address: json['address']);
   }
 
-  Map<String, dynamic> toJson() => {"username": username, "email": email, "password": password, "phone": phone, "birth": birth, "address": address};
-
+  Map<String, dynamic> toJson() => {
+        "username": username,
+        "email": email,
+        "password": password,
+        "phone": phone,
+        "birth": birth,
+        "address": address
+      };
 }

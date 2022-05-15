@@ -16,17 +16,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     UserViewModel modelView = Provider.of<UserViewModel>(context);
-    final user = modelView.profile[0];
-   
+    final user = modelView.profile[modelView.profile.length - 1];
+
     // final user = UserPreferences.myUser;
-    
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-            "Profile",
-            style: TextStyle(fontSize: 17, fontFamily: 'Merriweather'),
-          ),
+          "Profile",
+          style: TextStyle(fontSize: 17, fontFamily: 'Merriweather'),
+        ),
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
@@ -50,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget buildProfile(UserModel user){
+  Widget buildProfile(UserModel user) {
     // final user = viewModel.profile;
     return Column(
       children: [
@@ -65,15 +65,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         Text(
           user.phone,
-          style: const TextStyle(fontFamily: 'OpenSans',fontSize: 16),
+          style: const TextStyle(fontFamily: 'OpenSans', fontSize: 16),
         ),
         Text(
           user.birth,
-          style: const TextStyle(fontFamily: 'OpenSans',fontSize: 16),
+          style: const TextStyle(fontFamily: 'OpenSans', fontSize: 16),
         ),
         Text(
           user.address,
-          style: const TextStyle(fontFamily: 'OpenSans',fontSize: 16),
+          style: const TextStyle(fontFamily: 'OpenSans', fontSize: 16),
         )
       ],
     );

@@ -35,15 +35,23 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(widget.item.name, style: const TextStyle(fontSize: 16,
-                  fontWeight: FontWeight.bold,),
+                Text(
+                  widget.item.name,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
-                Text(widget.item.description, style: const TextStyle(fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey),),
+                Text(
+                  widget.item.description,
+                  style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey),
+                ),
                 const SizedBox(
                   height: 12,
                 ),
@@ -71,8 +79,10 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
                   width: 70,
                   child: Text(
                     "Rp${getPrice().toStringAsFixed(2)}",
-                    style: const TextStyle(fontSize: 18,
-                    fontWeight: FontWeight.bold,),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                     textAlign: TextAlign.right,
                   ),
                 ),

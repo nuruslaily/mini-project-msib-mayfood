@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
   Food? food;
-  CartScreen({Key? key,this.food}) : super(key: key);
+  CartScreen({Key? key, this.food}) : super(key: key);
 
   @override
   State<CartScreen> createState() => _CartScreenState();
@@ -17,15 +17,17 @@ class _CartScreenState extends State<CartScreen> {
   int amount = 1;
   @override
   Widget build(BuildContext context) {
-    final cartList =
-        Provider.of<FoodViewModel>(context, listen: false).cartList;
+    final cartList = Provider.of<FoodViewModel>(context, listen: false).cartList;
+    print(cartList[0].id);
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-            "My Cart",
-            style: TextStyle(fontSize: 17, fontFamily: 'Merriweather', color: Colors.white),
-          ),
+          "My Cart",
+          style: TextStyle(
+              fontSize: 17, fontFamily: 'Merriweather', color: Colors.white),
+        ),
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
@@ -128,6 +130,7 @@ class _CartScreenState extends State<CartScreen> {
           return const CheckoutBottomSheet();
         });
   }
+
   double getPrice() {
     return widget.food!.price * amount;
   }

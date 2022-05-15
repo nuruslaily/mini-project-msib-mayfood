@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:foods/screens/category/category_screen.dart';
 import 'package:foods/screens/food/food_view_model.dart';
 import 'package:provider/provider.dart';
 
 class FilterScreen extends StatefulWidget {
-  final String category;
-
-  const FilterScreen({Key? key, required this.category}) : super(key: key);
+  const FilterScreen({Key? key}) : super(key: key);
 
   @override
   State<FilterScreen> createState() => _FilterScreenState();
 }
 
-class _FilterScreenState extends State<FilterScreen> {
+class _FilterScreenState extends State<FilterScreen>
+    with TickerProviderStateMixin {
   String? pilihan;
+  int? _selectedIndex;
+
   @override
   Widget build(BuildContext context) {
     FoodViewModel viewModel = Provider.of<FoodViewModel>(context);
@@ -50,14 +52,17 @@ class _FilterScreenState extends State<FilterScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             getLabel("Categories"),
-            const SizedBox(height: 15),
-            const OptionItem(text: "Snack"),
-            const SizedBox(height: 15),
-            const OptionItem(text: "Heavy Meal"),
-            const SizedBox(height: 15),
-            const OptionItem(text: "Drink"),
-            const SizedBox(height: 15),
-            const Spacer(),
+            Padding(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 30,
+                    child: _buildChips(),
+                  ),
+                ],
+              ),
+            ),
             ElevatedButton(
               child: const Text(
                 "Apply Filter",
@@ -66,21 +71,81 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
               ),
               onPressed: () {
-                if(pilihan == widget.category){
-                  for (var food in viewModel.foods) {
-                  if (food.category == widget.category) {
-                    setState(() {
-                      viewModel.category;
-                    });
-                  }
+                viewModel.filteredFood.clear();
+                var foodChoice = (viewModel.category.length > 0)
+                    ? viewModel.category[viewModel.category.length - 1]
+                    : [];
+                final filteredFoodsss = (viewModel.category.length > 0)
+                    ? viewModel.foods
+                        .where((e) => e.category == foodChoice)
+                        .toList()
+                    : viewModel.foods;
+
+                for (var element in filteredFoodsss) {
+                  viewModel.filteredFood.add(element);
+                  // print(element.name);
                 }
-                }
-                Navigator.pop(context);
+                // if (pilihan == widget.category) {
+                //   for (var food in viewModel.foods) {
+                //     if (food.category == widget.category) {
+                //       setState(() {
+                //         viewModel.category;
+                //       });
+                //     }
+                //   }
+                // }
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CategoryScreen()),
+              );
               },
             )
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildChips() {
+    List<String> food = ['Snack', 'Makanan Berat', 'Minuman'];
+    FoodViewModel viewModel = Provider.of<FoodViewModel>(context);
+    List<Widget> chips = [];
+    var foodChoice = (viewModel.category.length > 0)
+        ? viewModel.category[viewModel.category.length - 1]
+        : [];
+
+    for (int i = 0; i < food.length; i++) {
+      ChoiceChip choiceChip = ChoiceChip(
+        selected: foodChoice == food[i],
+        label: Text(food[i].toString(), style: TextStyle(color: Colors.white)),
+        avatar: CircleAvatar(
+          backgroundColor: Colors.purple,
+          child: Text(food[i]),
+        ),
+        elevation: 10,
+        pressElevation: 5,
+        shadowColor: Colors.teal,
+        backgroundColor: Colors.black54,
+        selectedColor: Colors.blue,
+        onSelected: (bool selected) {
+          setState(() {
+            if (selected) {
+              viewModel.category.add(food[i]);
+              _selectedIndex = i;
+            }
+          });
+
+          print(viewModel.category[viewModel.category.length - 1]);
+        },
+      );
+
+      chips.add(Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10), child: choiceChip));
+    }
+    return ListView(
+      // This next line does the trick.
+      scrollDirection: Axis.horizontal,
+      children: chips,
     );
   }
 
@@ -138,14 +203,14 @@ class _OptionItemState extends State<OptionItem> {
 
   Widget getCheckBox() {
     return ClipRRect(
-      borderRadius: const  BorderRadius.all(Radius.circular(8)),
+      borderRadius: const BorderRadius.all(Radius.circular(8)),
       child: SizedBox(
         width: 25,
         height: 25,
         child: Container(
           decoration: BoxDecoration(
               border: Border.all(
-                  width: checked ? 0 : 1.5, color: const  Color(0xffB1B1B1)),
+                  width: checked ? 0 : 1.5, color: const Color(0xffB1B1B1)),
               borderRadius: BorderRadius.circular(8),
               color: checked ? Colors.blue : Colors.transparent),
           child: Theme(

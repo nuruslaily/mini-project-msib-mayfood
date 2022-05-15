@@ -8,13 +8,13 @@ class FavoriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
+    return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-            "Favorite",
-            style: TextStyle(fontSize: 17, fontFamily: 'Merriweather'),
-          ),
+          "Favorite",
+          style: TextStyle(fontSize: 17, fontFamily: 'Merriweather'),
+        ),
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
@@ -28,44 +28,42 @@ class FavoriteScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
-        child:  getFavorite(context)
-      ),
+      body: Container(child: getFavorite(context)),
     );
-    }
-    
-    getFavorite(BuildContext context){
-      FoodViewModel viewModel = Provider.of<FoodViewModel>(context);
-      final favorite =
-        Provider.of<FoodViewModel>(context, listen: false).favorite;
-      if (viewModel.foods.isEmpty) {
-        return const Center(
-                child: Text("No Favorite Items",
-                  style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF7C7C7C),),
-                ),
-              );
-      } else {
-        return Column(
-          children: getChildrenWithSeparator(
-            addToLastChild: false,
-            widgets: favorite.map((e) {
-              return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                width: double.maxFinite,
-                child: FavoriteCardWidget(item: e),
-              );
-            }).toList(),
-            separator: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
-            ),
-          )
-        );
-      }
-}
-}
+  }
 
+  getFavorite(BuildContext context) {
+    FoodViewModel viewModel = Provider.of<FoodViewModel>(context);
+    final favorite =
+        Provider.of<FoodViewModel>(context, listen: false).favorite;
+    if (viewModel.foods.isEmpty) {
+      return const Center(
+        child: Text(
+          "No Favorite Items",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF7C7C7C),
+          ),
+        ),
+      );
+    } else {
+      return Column(
+          children: getChildrenWithSeparator(
+        addToLastChild: false,
+        widgets: favorite.map((e) {
+          return Container(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            width: double.maxFinite,
+            child: FavoriteCardWidget(item: e),
+          );
+        }).toList(),
+        separator: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25),
+        ),
+      ));
+    }
+  }
+}
 
 class FavoriteCardWidget extends StatefulWidget {
   const FavoriteCardWidget({Key? key, required this.item}) : super(key: key);
@@ -101,15 +99,23 @@ class _FavoriteCardWidgetState extends State<FavoriteCardWidget> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(widget.item.name, style: const TextStyle( fontSize: 16,
-                  fontWeight: FontWeight.bold,),
+                Text(
+                  widget.item.name,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(
                   height: 4,
                 ),
-                Text(widget.item.description, style: const TextStyle(fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey),),
+                Text(
+                  widget.item.description,
+                  style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey),
+                ),
                 const Divider()
               ],
             ),
@@ -125,7 +131,4 @@ class _FavoriteCardWidgetState extends State<FavoriteCardWidget> {
       child: Image.network(widget.item.image),
     );
   }
-
 }
-
-

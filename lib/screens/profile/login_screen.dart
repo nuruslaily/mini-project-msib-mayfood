@@ -181,8 +181,8 @@ class _LoginScreenState extends State<LoginScreen> {
     password = _passwordController.text;
 
     for (var users in modelView.user) {
-      print(users.email == email);
-      print(users.password == password);
+      // print(users.email == email);
+      // print(users.password == password);
 
       if (users.email == email && users.password == password) {
         print("berhasil login");

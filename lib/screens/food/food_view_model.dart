@@ -38,14 +38,19 @@ class FoodViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  List<Food> _category = [];
 
-  List<Food> get category => _category;
+
+  List<String> _category = [];
+
+  List<String> get category => _category;
 
   List<Food> _favorite = [];
   List<Food> get favorite => _favorite;
 
-  void favoriteFood(Food menu){
+  List<Food> _filteredFood = [];
+  List<Food> get filteredFood => _filteredFood;
+
+  void favoriteFood(Food menu) {
     _favorite.add(menu);
     notifyListeners();
   }

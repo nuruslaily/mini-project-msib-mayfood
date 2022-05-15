@@ -5,7 +5,9 @@ class ProductCards extends StatefulWidget {
   const ProductCards(
       {Key? key,
       required this.menu,
-      p, required this.isAdded, required this.onTap})
+      p,
+      required this.isAdded,
+      required this.onTap})
       : super(key: key);
   final Food menu;
   final bool isAdded;
@@ -29,7 +31,10 @@ class _ProductCardsState extends State<ProductCards> {
           children: [
             Expanded(
               flex: 3,
-              child: Image.network(widget.menu.image, fit: BoxFit.fill,),
+              child: Image.network(
+                widget.menu.image,
+                fit: BoxFit.fill,
+              ),
             ),
             Expanded(
                 child: Container(
@@ -42,7 +47,11 @@ class _ProductCardsState extends State<ProductCards> {
                     key: Key(widget.menu.id.toString()),
                     child: Text(
                       widget.menu.name,
-                      style: const TextStyle(fontFamily: 'OpenSans', fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),
+                      style: const TextStyle(
+                          fontFamily: 'OpenSans',
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
                     ),
                   ),
                   IconButton(

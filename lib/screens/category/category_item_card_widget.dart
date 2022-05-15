@@ -18,35 +18,34 @@ class CategoryItemCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-            clipBehavior: Clip.hardEdge,
-            child: Card(
-              color: borderColor,
-              child: Column(
-                children: [
-                      Container(
-                        alignment: Alignment.topCenter,
-                        height: 105,
-                        width: 160,
-                        child: imageWidget(),
-                      ),
-                      Expanded(
-                        child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                          child: Text(
-                            item.name,
-                            style: const TextStyle(
-                              fontFamily: 'OpenSans',
-                              fontSize: 14,
-                              color: Color.fromARGB(255, 41, 39, 39),
-                              fontWeight: FontWeight.bold
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                ],
+      clipBehavior: Clip.hardEdge,
+      child: Card(
+        color: borderColor,
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.topCenter,
+              height: 105,
+              width: 160,
+              child: imageWidget(),
+            ),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Text(
+                  item.name,
+                  style: const TextStyle(
+                      fontFamily: 'OpenSans',
+                      fontSize: 14,
+                      color: Color.fromARGB(255, 41, 39, 39),
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),        
+            ),
+          ],
+        ),
+      ),
     );
   }
 

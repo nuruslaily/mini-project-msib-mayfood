@@ -14,7 +14,7 @@ class FoodScreen extends StatefulWidget {
   State<FoodScreen> createState() => _FoodScreenState();
 }
 
-class _FoodScreenState extends State<FoodScreen>{
+class _FoodScreenState extends State<FoodScreen> {
   SharedPreferences? logindata;
   String username = '';
   String email = '';
@@ -34,6 +34,7 @@ class _FoodScreenState extends State<FoodScreen>{
     super.initState();
     initial();
   }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -44,18 +45,19 @@ class _FoodScreenState extends State<FoodScreen>{
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-        backgroundColor: Colors.brown[100],
-          appBar: AppBar(
-            centerTitle: true,
-            title: const Text('MayFoods', style: TextStyle(fontSize: 20, fontFamily: 'AbrilFatface', 
-            color: Colors.white)),
-            backgroundColor: Colors.red,
-          ),
-          drawer: const DrawWidget(),
-          body: const FoodList(),
+      backgroundColor: Colors.brown[100],
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('MayFoods',
+            style: TextStyle(
+                fontSize: 20, fontFamily: 'AbrilFatface', color: Colors.white)),
+        backgroundColor: Colors.red,
+      ),
+      drawer: const DrawWidget(),
+      body: const FoodList(),
     );
-        
   }
 }
 
@@ -91,18 +93,23 @@ class _FoodListState extends State<FoodList> {
               Navigator.push(
                 context,
                 PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return FoodDetailScreen(
-                      id: _menu.id!,
-                      name: _menu.name,
-                      price: _menu.price.toDouble(),
-                      description: _menu.description,
-                      image: _menu.image, category: _menu, heroSuffix: "explore",);
-                  }, transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                    final tween = Tween(begin: 0.0, end: 1.0);
-                    return FadeTransition(opacity: animation.drive(tween), child: child);
-                  }
-                ),
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                  return FoodDetailScreen(
+                    detailFood: _menu,
+                    id: _menu.id!,
+                    name: _menu.name,
+                    price: _menu.price.toDouble(),
+                    description: _menu.description,
+                    image: _menu.image,
+                    category: _menu.category,
+                    heroSuffix: "explore",
+                  );
+                }, transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                  final tween = Tween(begin: 0.0, end: 1.0);
+                  return FadeTransition(
+                      opacity: animation.drive(tween), child: child);
+                }),
               );
             },
             child: ProductCards(
@@ -112,8 +119,7 @@ class _FoodListState extends State<FoodList> {
                   setState(() {
                     item.addCart(_menu);
                   });
-                }
-                ),
+                }),
           );
         });
       },
@@ -129,7 +135,9 @@ class _FoodListState extends State<FoodList> {
     }
 
     if (isError) {
-      return const Center(child: Text('Gagal mengambil data.', style: TextStyle(fontFamily: 'OpenSans')));
+      return const Center(
+          child: Text('Gagal mengambil data.',
+              style: TextStyle(fontFamily: 'OpenSans')));
     }
 
     return gridView(viewModel);

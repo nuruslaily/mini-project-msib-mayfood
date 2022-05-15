@@ -12,6 +12,10 @@ class UserViewModel with ChangeNotifier {
 
   List<UserModel> get profile => _profile;
 
+  List<UserModel> _register = [];
+
+  List<UserModel> get register => _register;
+
   ViewState _state = ViewState.none;
   ViewState get state => _state;
 
@@ -33,23 +37,23 @@ class UserViewModel with ChangeNotifier {
     }
   }
 
-   void addUser(UserModel userModel) {
-    _user.add(userModel);    
+  void addUser(UserModel userModel) {
+    _user.add(userModel);
     notifyListeners();
   }
 
   postUser(UserModel userModel) async {
     await UserAPI.postUsers(userModel);
-    _user.add(userModel);
+    // _register.add(userModel);
     notifyListeners();
   }
 
- void saveUserinStrorage(UserModel userModel) {
+  void saveUserinStrorage(UserModel userModel) {
     _profile.add(userModel);
     notifyListeners();
   }
 
-  void logout(UserModel userModel){
+  void logout(UserModel userModel) {
     _profile.remove(userModel);
     notifyListeners();
   }

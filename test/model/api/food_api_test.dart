@@ -13,8 +13,15 @@ void main() {
     test('get all foods returns data', () async {
       when(foodAPI.getFoods()).thenAnswer(
         (_) async => <Food>[
-        Food(id: 1, name: 'a', category: 'snack', price: 5000, description: 's', image: 'img'),
-      ],);
+          Food(
+              id: 1,
+              name: 'a',
+              category: 'snack',
+              price: 5000,
+              description: 's',
+              image: 'img'),
+        ],
+      );
       var foods = await foodAPI.getFoods();
       expect(foods.isNotEmpty, true);
     });

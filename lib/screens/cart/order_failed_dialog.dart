@@ -41,31 +41,47 @@ class OrderFailedDialogue extends StatelessWidget {
               flex: 10,
             ),
             const Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 45,
-              ),
-              child: Icon(Icons.close_rounded, size: 20, color: Colors.red,)
-              // Image(
-              //     image: AssetImage("assets/images/order_failed_image.png")),
-            ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 45,
+                ),
+                child: Icon(
+                  Icons.close_rounded,
+                  size: 20,
+                  color: Colors.red,
+                )
+                // Image(
+                //     image: AssetImage("assets/images/order_failed_image.png")),
+                ),
             const Spacer(
               flex: 5,
             ),
-            const Text("Oops! Order Failed", style: TextStyle(fontSize: 28,
-              fontWeight: FontWeight.w600,),
+            const Text(
+              "Oops! Order Failed",
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             const Spacer(
               flex: 2,
             ),
-            const Text("Something went temply wrong", style: TextStyle(fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: Color(0xff7C7C7C),),
+            const Text(
+              "Something went temply wrong",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Color(0xff7C7C7C),
+              ),
             ),
             const Spacer(
               flex: 8,
             ),
             ElevatedButton(
-              child: const Text("Please Try Again",style: TextStyle(fontFamily:'OpenSans',fontWeight: FontWeight.w600,)),
+              child: const Text("Please Try Again",
+                  style: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontWeight: FontWeight.w600,
+                  )),
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (BuildContext context) {
@@ -79,11 +95,17 @@ class OrderFailedDialogue extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const FoodScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const FoodScreen()));
               },
-              child: const Text("Back To Home", style: TextStyle(fontSize: 18,
-                fontWeight: FontWeight.w600,),
+              child: const Text(
+                "Back To Home",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
             const Spacer(

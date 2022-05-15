@@ -43,7 +43,7 @@ class OrderAcceptedScreen extends StatelessWidget {
                     fontWeight: FontWeight.w600),
               ),
             ),
-            
+
             const Spacer(
               flex: 8,
             ),
@@ -55,7 +55,8 @@ class OrderAcceptedScreen extends StatelessWidget {
               height: 200,
             )),
             ElevatedButton(
-              child: const Text("Track Order", style: TextStyle(fontFamily: 'OpenSans')),
+              child: const Text("Track Order",
+                  style: TextStyle(fontFamily: 'OpenSans')),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -65,8 +66,10 @@ class OrderAcceptedScreen extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const FoodScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const FoodScreen()));
               },
               child: const Text(
                 "Back To Home",
