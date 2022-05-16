@@ -35,18 +35,18 @@ Berikut adalah fitur-fitur dari aplikasi Mayfoods, terdiri dari :
 
 <p float="left">
   <img src="assets/screenshoot/1.jpeg" width="200" />
-  <img src="Assets/screenshoot/2.jpeg" width="200" /> 
-  <img src="Assets/screenshoot/5.jpeg" width="200" />
-  <img src="Assets/screenshoot/6.jpeg" width="200" />
-  <img src="Assets/screenshoot/7.jpeg" width="200" /> 
-  <img src="Assets/screenshoot/8.jpeg" width="200" />
-  <img src="Assets/screenshoot/3.jpeg" width="200" />
-  <img src="Assets/screenshoot/4.jpeg" width="200" /> 
-  <img src="Assets/screenshoot/9.jpeg" width="200" />
-  <img src="Assets/screenshoot/10.jpeg" width="200" />
-  <img src="Assets/screenshoot/11.jpeg" width="200" />
-  <img src="Assets/screenshoot/15.jpeg" width="200" />
-  <img src="Assets/screenshoot/12.jpeg" width="200" />
-  <img src="Assets/screenshoot/13.jpeg" width="200" />
-  <img src="Assets/screenshoot/14.jpeg" width="200" />
+  <img src="assets/screenshoot/2.jpeg" width="200" /> 
+  <img src="assets/screenshoot/5.jpeg" width="200" />
+  <img src="assets/screenshoot/6.jpeg" width="200" />
+  <img src="assets/screenshoot/7.jpeg" width="200" /> 
+  <img src="assets/screenshoot/8.jpeg" width="200" />
+  <img src="assets/screenshoot/3.jpeg" width="200" />
+  <img src="assets/screenshoot/4.jpeg" width="200" /> 
+  <img src="assets/screenshoot/9.jpeg" width="200" />
+  <img src="assets/screenshoot/10.jpeg" width="200" />
+  <img src="assets/screenshoot/11.jpeg" width="200" />
+  <img src="assets/screenshoot/15.jpeg" width="200" />
+  <img src="assets/screenshoot/12.jpeg" width="200" />
+  <img src="assets/screenshoot/13.jpeg" width="200" />
+  <img src="assets/screenshoot/14.jpeg" width="200" />
 </p>
