@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:foods/model/amount_model.dart';
 import 'package:foods/model/api/food_api.dart';
 import 'package:foods/model/food_model.dart';
 import 'package:foods/model/view_state.dart';
@@ -7,6 +8,10 @@ class FoodViewModel with ChangeNotifier {
   List<Food> _foods = [];
 
   List<Food> get foods => _foods;
+
+  List<Amount> _amount = [];
+
+  List<Amount> get amount => _amount;
 
   ViewState _state = ViewState.none;
   ViewState get state => _state;

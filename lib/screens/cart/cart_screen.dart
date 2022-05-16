@@ -17,8 +17,8 @@ class _CartScreenState extends State<CartScreen> {
   int amount = 1;
   @override
   Widget build(BuildContext context) {
-    final cartList = Provider.of<FoodViewModel>(context, listen: false).cartList;
-    print(cartList[0].id);
+    final cartList = Provider.of<FoodViewModel>(context, listen: false).cartList.isNotEmpty ? Provider.of<FoodViewModel>(context, listen: false).cartList : [];
+    // print(cartList[0].id);
 
     return Scaffold(
       appBar: AppBar(
@@ -48,13 +48,13 @@ class _CartScreenState extends State<CartScreen> {
           Column(
               children: getChildrenWithSeparator(
             addToLastChild: false,
-            widgets: cartList.map((e) {
+            widgets: cartList.isNotEmpty ? cartList.map((e) {
               return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 width: double.maxFinite,
                 child: ChartItemWidget(item: e),
               );
-            }).toList(),
+            }).toList() : [],
             separator: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 25),
               child: Divider(
@@ -66,26 +66,6 @@ class _CartScreenState extends State<CartScreen> {
             thickness: 1,
           ),
           getCheckoutButton(context),
-          // Expanded(
-          //   child: ListView.builder(
-          //     itemCount: cartList.length,
-          //     itemBuilder: (context, index) {
-          //       return ListTile(
-          //         title: Text(
-          //           cartList[index].name,
-          //           style: const TextStyle(fontSize: 20),
-          //         ),
-          //       );
-          //     },
-          //   ),
-          // ),
-          // ElevatedButton(
-          //   onPressed: () {},
-          //   child: const Text(
-          //     'Pesan Sekarang',
-          //     style: TextStyle(fontSize: 20),
-          //   ),
-          // ),
         ],
       ))),
     );

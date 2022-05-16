@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
           fontFamily: 'OpenSans',
           fontSize: 16,
           fontWeight: FontWeight.w600,
-          color: Colors.red[200]),
+          color: Colors.white),
     );
   }
 

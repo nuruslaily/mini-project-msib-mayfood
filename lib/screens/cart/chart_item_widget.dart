@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:foods/model/food_model.dart';
+import 'package:foods/screens/cart/cart_screen.dart';
 import 'package:foods/screens/component/item_counter.dart';
+import 'package:foods/screens/food/food_view_model.dart';
+import 'package:provider/provider.dart';
 
 class ChartItemWidget extends StatefulWidget {
   const ChartItemWidget({Key? key, required this.item}) : super(key: key);
@@ -21,6 +24,8 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
 
   @override
   Widget build(BuildContext context) {
+    FoodViewModel modelView = Provider.of<FoodViewModel>(context);
+
     return Container(
       height: height,
       margin: const EdgeInsets.symmetric(
@@ -56,21 +61,27 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
                   height: 12,
                 ),
                 const Spacer(),
-                ItemCounter(
-                  onAmountChanged: (newAmount) {
-                    setState(() {
-                      amount = newAmount;
-                    });
-                  },
-                )
+                Text("${getAmount(modelView).toInt()}")
+                // ItemCounter(
+                //   onAmountChanged: (newAmount) {
+                //     setState(() {
+                //       amount = newAmount;
+                //     });
+                //   },
+                // )
               ],
             ),
             Column(
               children: [
-                const Icon(
-                  Icons.close,
-                  color: Colors.grey,
-                  size: 25,
+                IconButton(
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.grey,
+                    size: 25,
+                  ),
+                  onPressed: () {
+                    handleDeleteFoodCart(modelView);
+                  },
                 ),
                 const Spacer(
                   flex: 5,
@@ -102,7 +113,27 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
     );
   }
 
+  handleDeleteFoodCart(FoodViewModel viewModel) {
+    for (var i = 0; i < viewModel.cartList.length; i++) {
+      if (viewModel.cartList[i].id == widget.item.id) {
+        setState(() {
+           viewModel.cartList.removeAt(i);
+           Navigator.pop(context);
+           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CartScreen()));
+        }); 
+      }
+    }
+  }
+
   double getPrice() {
     return widget.item.price * amount;
+  }
+
+  double getAmount(FoodViewModel modelView) {
+    final totalPrice = widget.item.price;
+    final hargaAwal =
+        modelView.foods.where((e) => e.id == widget.item.id).toList();
+
+    return totalPrice / hargaAwal[0].price;
   }
 }

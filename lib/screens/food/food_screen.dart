@@ -120,6 +120,7 @@ class _FoodListState extends State<FoodList> {
                     item.addCart(_menu);
                   });
                 }),
+                
           );
         });
       },

@@ -5,7 +5,6 @@ class ProductCards extends StatefulWidget {
   const ProductCards(
       {Key? key,
       required this.menu,
-      p,
       required this.isAdded,
       required this.onTap})
       : super(key: key);

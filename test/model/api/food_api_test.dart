@@ -10,6 +10,7 @@ import 'food_api_test.mocks.dart';
 void main() {
   group('FoodAPI', () {
     FoodAPI foodAPI = MockFoodAPI();
+    // FoodAPI foodAPI = MockFoodAPI();
     test('get all foods returns data', () async {
       when(foodAPI.getFoods()).thenAnswer(
         (_) async => <Food>[

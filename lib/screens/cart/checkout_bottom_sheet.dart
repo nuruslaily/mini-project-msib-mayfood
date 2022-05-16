@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:foods/screens/cart/order_accepted_screen.dart';
 import 'package:foods/screens/cart/order_failed_dialog.dart';
+import 'package:foods/screens/food/food_view_model.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutBottomSheet extends StatefulWidget {
   // final Food item;
@@ -13,6 +16,8 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
   int amount = 1;
   @override
   Widget build(BuildContext context) {
+    FoodViewModel modelView = Provider.of<FoodViewModel>(context);;
+
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: 25,
@@ -75,7 +80,7 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
                 ),
               ),
               onPressed: () {
-                onPlaceOrderClicked();
+                onPlaceOrderClicked(modelView);
               },
             ),
           ),
@@ -154,12 +159,12 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
     );
   }
 
-  void onPlaceOrderClicked() {
+  void onPlaceOrderClicked(FoodViewModel viewModel) {
     Navigator.pop(context);
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return const OrderFailedDialogue();
+          return viewModel.cartList.isNotEmpty ? const OrderAcceptedScreen() : const OrderFailedDialogue();
         });
   }
   // double getPrice() {
