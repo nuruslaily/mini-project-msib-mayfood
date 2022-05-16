@@ -29,13 +29,23 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
     return Container(
       height: height,
       margin: const EdgeInsets.symmetric(
-        vertical: 30,
+        vertical: 20,
       ),
       child: IntrinsicHeight(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            IconButton(
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.grey,
+                    size: 25,
+                  ),
+                  onPressed: () {
+                    handleDeleteFoodCart(modelView);
+                  },
+                ),
             imageWidget(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,11 +67,21 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
                       fontWeight: FontWeight.bold,
                       color: Colors.grey),
                 ),
-                const SizedBox(
-                  height: 12,
+                SizedBox(
+                  height: 20,
+                  child: Text(
+                    "Rp${getPrice().toStringAsFixed(2)}",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.right,
+                  ),
                 ),
-                const Spacer(),
-                Text("${getAmount(modelView).toInt()}")
+                const SizedBox(
+                  height: 5,
+                ),
+                Text("${getAmount(modelView).toInt()}", style: TextStyle(fontWeight: FontWeight.bold),)
                 // ItemCounter(
                 //   onAmountChanged: (newAmount) {
                 //     setState(() {
@@ -71,35 +91,6 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
                 // )
               ],
             ),
-            Column(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.close,
-                    color: Colors.grey,
-                    size: 25,
-                  ),
-                  onPressed: () {
-                    handleDeleteFoodCart(modelView);
-                  },
-                ),
-                const Spacer(
-                  flex: 5,
-                ),
-                SizedBox(
-                  width: 70,
-                  child: Text(
-                    "Rp${getPrice().toStringAsFixed(2)}",
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.right,
-                  ),
-                ),
-                const Spacer(),
-              ],
-            )
           ],
         ),
       ),

@@ -21,9 +21,8 @@ class UserAPI {
   }
 
   static Future postUsers(UserModel user) async {
-    final response = await Dio().post(
-        "http://localhost:3000/profile",
-        data: user.toJson());
+    final response =
+        await Dio().post("http://localhost:3000/profile", data: user.toJson());
     print(response);
     return response.data;
   }

@@ -25,13 +25,12 @@ class CategoryItemCardWidget extends StatelessWidget {
           children: [
             Container(
               alignment: Alignment.topCenter,
-              height: 105,
+              height: 90,
               width: 160,
               child: imageWidget(),
             ),
             Expanded(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Text(
                   item.name,
                   style: const TextStyle(

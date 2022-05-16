@@ -79,6 +79,7 @@ class _FoodListState extends State<FoodList> {
   }
 
   Widget gridView(FoodViewModel viewModel) {
+    print(viewModel.foods.length);
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 5),

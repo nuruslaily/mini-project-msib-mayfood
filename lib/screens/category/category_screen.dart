@@ -18,7 +18,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     FoodViewModel viewModel = Provider.of<FoodViewModel>(context);
-
+    print(viewModel.foods.length);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
