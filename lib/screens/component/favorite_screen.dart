@@ -90,31 +90,33 @@ class _FavoriteCardWidgetState extends State<FavoriteCardWidget> {
         vertical: 30,
       ),
       child: IntrinsicHeight(
-        child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: Wrap(
+          direction: Axis.vertical,
           children: [
             imageWidget(),
-            const Spacer(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Wrap(
+              direction: Axis.vertical,
               children: [
-                Text(
-                  widget.item.name,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                Flexible(
+                  child: Text(
+                    widget.item.name,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 const SizedBox(
                   height: 4,
                 ),
-                Text(
-                  widget.item.description,
-                  style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey),
+                Flexible(
+                  child: Text(
+                    widget.item.description,
+                    style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                  ),
                 ),
                 const Divider()
               ],
