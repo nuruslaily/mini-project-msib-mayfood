@@ -111,7 +111,7 @@ class _CartScreenState extends State<CartScreen> {
         });
   }
 
-  double getPrice() {
+  num getPrice() {
     return widget.food!.price * amount;
   }
 }

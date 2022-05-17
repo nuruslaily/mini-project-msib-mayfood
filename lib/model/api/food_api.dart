@@ -5,7 +5,7 @@ class FoodAPI {
   static Future<List<Food>> getFoods() async {
     final response = await Dio()
         .get("https://my-json-server.typicode.com/nuruslaily/pelatihan/menu");
-
+    print(response);
     List<Food> foods = (response.data as List)
         .map((e) => Food(
             id: e['id'],

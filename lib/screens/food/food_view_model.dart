@@ -30,6 +30,8 @@ class FoodViewModel with ChangeNotifier {
       notifyListeners();
       changeState(ViewState.none);
     } catch (e) {
+      print('----------- error : ');
+      print(e);
       changeState(ViewState.error);
     }
   }

@@ -32,47 +32,49 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
         vertical: 20,
       ),
       child: IntrinsicHeight(
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: Wrap(
+          alignment: WrapAlignment.start,
+          runAlignment: WrapAlignment.start,
+          direction: Axis.vertical,
           children: [
-            IconButton(
-                  icon: Icon(
-                    Icons.close,
-                    color: Colors.grey,
-                    size: 25,
-                  ),
-                  onPressed: () {
-                    handleDeleteFoodCart(modelView);
-                  },
-                ),
-            imageWidget(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+             Column(
+               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  widget.item.name,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                IconButton(
+              icon: Icon(
+                Icons.close,
+                color: Colors.grey,
+                size: 15,
+              ),
+              onPressed: () {
+                handleDeleteFoodCart(modelView);
+              },
+            ),
+              ],
+            ),
+            imageWidget(),
+            Flex(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              direction: Axis.vertical,
+              children: [
+                Expanded(
+                  child: Text(
+                    widget.item.name,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 const SizedBox(
                   height: 5,
-                ),
-                Text(
-                  widget.item.description,
-                  style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey),
                 ),
                 SizedBox(
                   height: 20,
                   child: Text(
                     "Rp${getPrice().toStringAsFixed(2)}",
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.right,
@@ -81,7 +83,19 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
                 const SizedBox(
                   height: 5,
                 ),
-                Text("${getAmount(modelView).toInt()}", style: TextStyle(fontWeight: FontWeight.bold),)
+                Expanded(
+                  child: Text(
+                    widget.item.description,
+                    style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                  ),
+                ),
+                Text(
+                  "${getAmount(modelView).toInt()}",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                )
                 // ItemCounter(
                 //   onAmountChanged: (newAmount) {
                 //     setState(() {
@@ -108,15 +122,16 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
     for (var i = 0; i < viewModel.cartList.length; i++) {
       if (viewModel.cartList[i].id == widget.item.id) {
         setState(() {
-           viewModel.cartList.removeAt(i);
-           Navigator.pop(context);
-           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CartScreen()));
-        }); 
+          viewModel.cartList.removeAt(i);
+          Navigator.pop(context);
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => CartScreen()));
+        });
       }
     }
   }
 
-  double getPrice() {
+  num getPrice() {
     return widget.item.price * amount;
   }
 

@@ -2,7 +2,7 @@ class Food {
   final int? id;
   final String name;
   final String category;
-  final double price;
+  final num price;
   final String description;
   final String image;
 

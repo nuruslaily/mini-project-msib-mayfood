@@ -18,30 +18,39 @@ class CategoryItemCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      clipBehavior: Clip.hardEdge,
+      clipBehavior: Clip.antiAlias,
       child: Card(
         color: borderColor,
-        child: Column(
+        child: Wrap(
+          direction: Axis.horizontal,
           children: [
             Container(
-              alignment: Alignment.topCenter,
-              height: 90,
-              width: 160,
-              child: imageWidget(),
-            ),
-            Expanded(
-              child: Container(
-                child: Text(
-                  item.name,
-                  style: const TextStyle(
-                      fontFamily: 'OpenSans',
-                      fontSize: 14,
-                      color: Color.fromARGB(255, 41, 39, 39),
-                      fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
+                alignment: Alignment.topCenter,
+                height: 150,
+                width: 160,
+                child: Wrap(
+                  direction: Axis.horizontal,
+                  children: [
+                  imageWidget(),
+                  Container(
+                    alignment: Alignment.topCenter,
+                    width: 100,
+                    height: 100,
+                    child: Flexible(
+                      flex: 1,
+                      fit: FlexFit.loose,
+                      child: Text(
+                            item.name,
+                            style: const TextStyle(
+                                fontFamily: 'OpenSans',
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 41, 39, 39),
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
+                      ),
+                      ),
+                ])),
           ],
         ),
       ),
