@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foods/model/user_model.dart';
 import 'package:foods/screens/cart/cart_screen.dart';
 import 'package:foods/screens/category/category_screen.dart';
 import 'package:foods/screens/component/favorite_screen.dart';
@@ -147,7 +148,7 @@ class _DrawWidgetState extends State<DrawWidget> {
 
   void logout() {
     final modelView = Provider.of<UserViewModel>(context, listen: false);
-    modelView.logout(modelView.profile[0]);
+    modelView.logout();
     Navigator.push(
       context,
       PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) {
@@ -162,7 +163,14 @@ class _DrawWidgetState extends State<DrawWidget> {
   Widget _header() {
     // final user = UserPreferences.myUser;
     UserViewModel modelView = Provider.of<UserViewModel>(context);
-    final user = modelView.profile[modelView.profile.length - 1];
+    final userItem = UserModel(
+      username: '', 
+      email: '', 
+      password: '', 
+      phone: '', 
+      birth: '', 
+      address: '');
+    final user = modelView.profile.isNotEmpty ? modelView.profile[modelView.profile.length - 1] : userItem;
     return UserAccountsDrawerHeader(
       currentAccountPicture: ClipOval(
         child: CircleAvatar(

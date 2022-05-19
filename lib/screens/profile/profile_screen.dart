@@ -16,7 +16,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     UserViewModel modelView = Provider.of<UserViewModel>(context);
-    final user = modelView.profile[modelView.profile.length - 1];
+    final userItem = UserModel(
+      username: '', 
+      email: '', 
+      password: '', 
+      phone: '', 
+      birth: '', 
+      address: '');
+    final user = modelView.profile.isNotEmpty ? modelView.profile[modelView.profile.length - 1] : userItem;
 
     // final user = UserPreferences.myUser;
 

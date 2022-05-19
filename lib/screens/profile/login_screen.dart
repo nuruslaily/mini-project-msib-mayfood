@@ -174,15 +174,11 @@ class _LoginScreenState extends State<LoginScreen> {
     var statusLogin = false;
     var userValid;
     print('di klik');
-    //  if (formKey.currentState!.validate()) {
-    //                   formKey.currentState!.save();
 
     email = _emailController.text;
     password = _passwordController.text;
 
     for (var users in modelView.user) {
-      // print(users.email == email);
-      // print(users.password == password);
 
       if (users.email == email && users.password == password) {
         print("berhasil login");
@@ -216,32 +212,6 @@ class _LoginScreenState extends State<LoginScreen> {
           fontSize: 16.0);
     }
 
-    // logindata.setBool('login', true);
-    // logindata.setString('email', email);
-
-    // final userItem = UserModel(
-    //     id: int.parse(Uuid().v1()), email: email, password: password);
-    // widget.onCreate(userItem);
-
-    //   viewModel!.doLogin(
-    //       _emailController.text, _passwordController.text);
-    // }
-    // }
   }
 
-  // void _validateInputs() {
-  //   // final userItem = UserModel(
-  //   //     id: Uuid().v1(),
-  //   //     name: name,
-  //   //     email: email,
-  //   //     password: password,
-  //   //     phone: '',
-  //   //     address: '');
-  //   // // widget.onCreate(userItem);
-  //   Navigator.pushAndRemoveUntil(
-  //       context,
-  //       MaterialPageRoute(builder: (context) => const FoodScreen()),
-  //       (route) => false);
-  //   // }
-  // }
 }
