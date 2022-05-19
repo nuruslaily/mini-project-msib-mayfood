@@ -34,19 +34,64 @@ Berikut adalah fitur-fitur dari aplikasi Mayfoods, terdiri dari :
 ## Screenshoot
 
 <p float="left">
+
+  - Splash Screen
+
   <img src="assets/screenshoot/1.jpeg" width="200" />
+
+  - Welcome Screen
+
   <img src="assets/screenshoot/2.jpeg" width="200" /> 
+
+  - Login Screen
+
   <img src="assets/screenshoot/5.jpeg" width="200" />
+
+  - Register Screen
+
   <img src="assets/screenshoot/6.jpeg" width="200" />
+
+  - Draw Screen
+
   <img src="assets/screenshoot/7.jpeg" width="200" /> 
+
+  - Profile Screen
+  
   <img src="assets/screenshoot/8.jpeg" width="200" />
+
+  - Food Screen (Daftar Menu)
+
   <img src="assets/screenshoot/3.jpeg" width="200" />
+
+  - Detail Screen
+
   <img src="assets/screenshoot/4.jpeg" width="200" /> 
+
+  - Cart Screen
+
   <img src="assets/screenshoot/9.jpeg" width="200" />
+
+  - Checkout Order Accept Screen
+
   <img src="assets/screenshoot/10.jpeg" width="200" />
-  <img src="assets/screenshoot/11.jpeg" width="200" />
-  <img src="assets/screenshoot/15.jpeg" width="200" />
+
+  - Checkout Order Failed Screen
+
   <img src="assets/screenshoot/12.jpeg" width="200" />
+
+  - Bottom Sheet
+
+  <img src="assets/screenshoot/11.jpeg" width="200" />
+
+  - Category Screen
+
+  <img src="assets/screenshoot/15.jpeg" width="200" />
+  
+  - Filter Screen Category
+
   <img src="assets/screenshoot/13.jpeg" width="200" />
+
+  - Favorite Screen
+
   <img src="assets/screenshoot/14.jpeg" width="200" />
 </p>
