@@ -2,7 +2,7 @@ import 'package:foods/model/food_model.dart';
 import 'package:dio/dio.dart';
 
 class FoodAPI {
-  static Future<List<Food>> getFoods() async {
+   Future<List<Food>> getFoods() async {
     final response = await Dio()
         .get("https://my-json-server.typicode.com/nuruslaily/pelatihan/menu");
     print(response);
