@@ -45,7 +45,11 @@ class FoodViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-
+  void updateCart(int index, Food foodMenu){
+    _cartList.removeAt(index);
+    _cartList.add(foodMenu);
+    notifyListeners();
+  }
 
   List<String> _category = [];
 

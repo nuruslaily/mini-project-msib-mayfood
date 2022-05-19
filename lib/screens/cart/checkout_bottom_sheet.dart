@@ -167,7 +167,4 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
           return viewModel.cartList.isNotEmpty ? const OrderAcceptedScreen() : const OrderFailedDialogue();
         });
   }
-  // double getPrice() {
-  //   return widget.item.price * amount;
-  // }
 }

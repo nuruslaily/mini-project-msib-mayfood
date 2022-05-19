@@ -15,24 +15,10 @@ class FoodScreen extends StatefulWidget {
 }
 
 class _FoodScreenState extends State<FoodScreen> {
-  SharedPreferences? logindata;
-  String username = '';
-  String email = '';
-  String password = '';
-
-  void initial() async {
-    logindata = await SharedPreferences.getInstance();
-    setState(() {
-      username = logindata!.getString('username').toString();
-      email = logindata!.getString('email').toString();
-      password = logindata!.getString('password').toString();
-    });
-  }
 
   @override
   void initState() {
     super.initState();
-    initial();
   }
 
   @override
@@ -88,6 +74,8 @@ class _FoodListState extends State<FoodList> {
         return Consumer<FoodViewModel>(
             builder: (context, FoodViewModel item, widget) {
           final _menu = viewModel.foods[index];
+          final checkCart =
+        viewModel.cartList.where((e) => e.id == _menu.id).toList();
           return GestureDetector(
             key: Key(_menu.id.toString()),
             onTap: () {
@@ -103,6 +91,9 @@ class _FoodListState extends State<FoodList> {
                     description: _menu.description,
                     image: _menu.image,
                     category: _menu.category,
+                    jumlah: checkCart.isNotEmpty
+                                ? (checkCart[0].price / _menu.price).toInt()
+                                : 1,
                     heroSuffix: "explore",
                   );
                 }, transitionsBuilder:

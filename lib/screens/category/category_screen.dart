@@ -95,6 +95,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 
   void onItemClicked(BuildContext context, Food category) {
+    FoodViewModel viewModel = Provider.of<FoodViewModel>(context);
+    final checkCart =
+        viewModel.cartList.where((e) => e.id == category.id).toList();
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -106,7 +109,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
           image: category.image,
           category: category.category,
           heroSuffix: "explore",
-          id: category.id!,
+          id: category.id!, jumlah: checkCart.isNotEmpty
+                                ? (checkCart[0].price / category.price).toInt()
+                                : 1,
         ),
       ),
     );

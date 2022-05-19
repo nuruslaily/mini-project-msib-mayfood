@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class ItemCounter extends StatefulWidget {
   final Function onAmountChanged;
-  const ItemCounter({Key? key, required this.onAmountChanged})
+  final int jumlah;
+  const ItemCounter({Key? key, required this.onAmountChanged, required this.jumlah})
       : super(key: key);
 
   @override
@@ -13,7 +14,15 @@ class _ItemCounterState extends State<ItemCounter> {
   int amount = 1;
 
   @override
+  void initState() {
+    amount = widget.jumlah;
+    // updateParent();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('amount item counter: $amount');
     return Row(
       children: [
         iconWidget(Icons.remove,

@@ -13,6 +13,7 @@ class FoodDetailScreen extends StatefulWidget {
   final String category;
   final num price;
   final String description;
+  final int jumlah;
   final String image;
 
   const FoodDetailScreen(
@@ -24,7 +25,7 @@ class FoodDetailScreen extends StatefulWidget {
       required this.category,
       required this.price,
       required this.description,
-      required this.image})
+      required this.image, required this.jumlah,})
       : super(key: key);
 
   @override
@@ -35,19 +36,26 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
   int amount = 1;
 
   @override
+  void initState() {
+    amount = widget.jumlah;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     FoodViewModel modelView = Provider.of<FoodViewModel>(context);
 
     final checkCart =
         modelView.cartList.where((e) => e.id == widget.id).toList();
     // print(checkCart.length);
-    print((checkCart.isNotEmpty) ? checkCart[0].price : 'kosong');
+    // print((checkCart.isNotEmpty) ? checkCart[0].price : 'kosong');
+    print('amount food detail: $amount');
 
-    if (checkCart.isNotEmpty) {
-      setState(() {
-        amount = (checkCart[0].price / widget.price).toInt();
-      });
-    }
+    // if (checkCart.isNotEmpty) {
+    //   setState(() {
+    //     amount = (checkCart[0].price / widget.price).toInt();
+    //   });
+    // }
     // final modelView = Provider.of<FoodViewModel>(context, listen: false);
     // final item = FoodViewModel();
     return Scaffold(
@@ -84,13 +92,16 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                       ),
                       const Spacer(),
                       Row(
-                        children: [
+                         children: [
                           ItemCounter(
                             onAmountChanged: (newAmount) {
                               setState(() {
                                 amount = newAmount;
                               });
                             },
+                            jumlah: checkCart.isNotEmpty
+                                ? (checkCart[0].price / widget.price).toInt()
+                                : 1,
                           ),
                           const Spacer(),
                           Text(
@@ -112,7 +123,12 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                       ElevatedButton(
                           onPressed: () {},
                           child: (checkCart.isNotEmpty)
-                              ? null
+                              ? IconButton(
+                                  onPressed: () => saveButtonAddCart(modelView),
+                                  icon: const Icon(
+                                    Icons.shopping_cart,
+                                    color: Colors.black,
+                                  ))
                               : IconButton(
                                   onPressed: () => getButtonAddCart(modelView),
                                   icon: const Icon(Icons.shopping_cart))),
@@ -138,6 +154,34 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
     setState(() {
       viewModel.addCart(foodItem);
     });
+
+    Navigator.push(
+      context,
+      PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) {
+        return CartScreen();
+      }, transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        final tween = Tween(begin: 0.0, end: 1.0);
+        return FadeTransition(opacity: animation.drive(tween), child: child);
+      }),
+    );
+  }
+
+  saveButtonAddCart(FoodViewModel viewModel) {
+    final foodItem = Food(
+        id: widget.id,
+        name: widget.name,
+        category: widget.category,
+        price: widget.price * amount,
+        description: widget.description,
+        image: widget.image);
+    print(amount);
+    for (var i = 0; i < viewModel.foods.length; i++) {
+      if (viewModel.foods[i].id == widget.id) {
+        setState(() {
+          viewModel.updateCart(i, foodItem);
+        });
+      }
+    }
 
     Navigator.push(
       context,

@@ -53,8 +53,8 @@ class UserViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void logout(UserModel userModel) {
-    _profile.remove(userModel);
+  void logout() {
+    _profile.clear();
     notifyListeners();
   }
 }
