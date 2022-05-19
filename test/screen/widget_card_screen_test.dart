@@ -4,24 +4,6 @@ import 'package:foods/model/food_model.dart';
 
 void main() {
   Food food = Food(name: 'a', category: 'b', price: 10.0, description: 'c', image: 'https://raw.githubusercontent.com/nuruslaily/pelatihan/main/img/ceker-pedas.jpeg');
-  // testWidgets(
-  //     "Pada card berisi foto makanan",
-  //     (WidgetTester tester) async {
-
-  //   await tester.pumpWidget(MaterialApp(
-  //     home: ClipRRect(
-  //       clipBehavior: Clip.hardEdge,
-  //       child: Column(
-  //         children: [
-  //           Expanded(
-  //             child: Image.network(
-  //               food.image
-  //             ))
-  //         ]
-  //       )
-  //       )
-  //   ));
-  // });
 
   testWidgets(
       "Pada card berisi nama makanan",

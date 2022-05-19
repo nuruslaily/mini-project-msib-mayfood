@@ -41,34 +41,7 @@ void main() {
       ),
     ));
   });
-
-  // testWidgets(
-  //     "Terdapat gambar makanan favorite",
-  //     (WidgetTester tester) async {
-  //   await tester.pumpWidget(MaterialApp(
-  //     home: Scaffold(
-  //       body: Container(
-  //         child: Column(
-  //           children: [
-  //             Container(
-  //               child: Row(
-  //                 children: [
-  //                   Column(
-  //                     children: [
-  //                       SizedBox(
-  //                         child: Image.network(food.image),
-  //                       )
-  //                     ],
-  //                   )
-  //                 ],
-  //               )
-  //             )
-  //           ]),
-  //       ),
-  //     ),
-  //   ));
-  // });
-
+  
   testWidgets(
       "Terdapat childwidget Sizedbox",
       (WidgetTester tester) async {

@@ -13,6 +13,7 @@ void main() {
     test('get all users returns data', () async {
       when(userAPI.getUser()).thenAnswer((_) async => <UserModel>[
         UserModel(
+          id: 1,
           username: 'a', 
           email: 'b', 
           password: 'c', 
@@ -24,8 +25,4 @@ void main() {
     expect(users.isNotEmpty, true);
   });
   });
-  // test('post user returns data', () async {
-  //   var users = await UserAPI.postUsers();
-  //   expect(users, true);
-  // });
 }

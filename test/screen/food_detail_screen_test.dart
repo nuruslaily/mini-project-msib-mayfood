@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:foods/model/food_model.dart';
-import 'package:foods/model/user_model.dart';
-import 'package:foods/screens/food/food_detail_screen.dart';
 
 void main() {
   Food food = Food(name: 'a', category: 'b', price: 10.0, description: 'c', image: 'd');
